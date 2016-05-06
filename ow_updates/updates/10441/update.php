@@ -22,23 +22,4 @@
  * which combines Covered Code or portions thereof with code not governed by the terms of the CPAL.
  */
 
-$tblPrefix = OW_DB_PREFIX;
-$dbo = Updater::getDbo();
-
-$logger = Updater::getLogger();
-
-$queries = array();
-
-$queries = "ALTER TABLE `{$tblPrefix}base_billing_sale` ADD `periodUnits` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `extraData`;";
-
-foreach ( $queries as $query )
-{
-    try
-    {
-        $dbo->query($query);
-    }
-    catch (Exception $e)
-    {
-        $logger->addEntry(json_encode($e));
-    }
-}
+Updater::getLanguageService()->deleteLangKey("admin", "warning_url_fopen_disabled");
